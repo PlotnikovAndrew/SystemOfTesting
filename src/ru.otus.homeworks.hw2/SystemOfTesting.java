@@ -8,7 +8,9 @@ public class SystemOfTesting {
 
         int correctCount = 0, wrongCount = 0;
         String prefaceQuestion = "Из какого фильма эта цитата?: ";
-        String[] questions = {"Идите, идите. Мы Вас вылечим. Алкоголики - это наш профиль.","Ну, юноша, самовыражайтесь быстрее","Да я же говорю - я за кефиром пошёл, а тут пираты"};
+        String[] questions = {"Идите, идите. Мы Вас вылечим. Алкоголики - это наш профиль.",
+                "Ну, юноша, самовыражайтесь быстрее",
+                "Да я же говорю - я за кефиром пошёл, а тут пираты"};
         String[][] answerOptions = {
                 {"Кавказкая пленница, или Новые приключения Шурика", "Человек с бульвара Капуцинов", "Бриллиантовая рука"},
                 {"Доживем до понедельника","Королева бензоколонки","Покровские ворота"},
@@ -23,12 +25,16 @@ public class SystemOfTesting {
                 System.out.println(j+1 + ". " + answerOptions[i][j]);
             }
             int answer = scanner.nextInt();
-            System.out.println("Ваш ответ: " + answerOptions[i][answer-1]);
+            if (answer > answerOptions[i].length) {
+                System.out.println("Введено невозможное значение!");
+                System.exit (1);
+            }
+                System.out.println("Ваш ответ: " + answerOptions[i][answer-1]);
             if (answer == correctAnswers[i]){
                 System.out.println("Верно!");
                 correctCount++;
             } else {
-                System.out.println("Неверно! Правильный ответ: " + correctAnswers[i]);
+                System.out.println("Неверно! Правильный ответ: " + answerOptions[i][correctAnswers[i]-1]);
                 wrongCount++;
             }
         }
