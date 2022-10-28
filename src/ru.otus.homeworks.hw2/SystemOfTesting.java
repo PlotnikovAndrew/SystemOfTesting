@@ -3,11 +3,11 @@ package ru.otus.homeworks.hw2;
 import java.util.Scanner;
 
 public class SystemOfTesting {
+    private static final String PREFACE_QUESTION = "Из какого фильма эта цитата?: ";
     public static void main(String[] args) {
 
-
         int correctCount = 0, wrongCount = 0;
-        String prefaceQuestion = "Из какого фильма эта цитата?: ";
+
         String[] questions = {"Идите, идите. Мы Вас вылечим. Алкоголики - это наш профиль.",
                 "Ну, юноша, самовыражайтесь быстрее",
                 "Да я же говорю - я за кефиром пошёл, а тут пираты"};
@@ -20,14 +20,16 @@ public class SystemOfTesting {
         Scanner scanner = new Scanner(System.in);
 
         for(int i = 0; i < questions.length; i++) {
-            System.out.println(prefaceQuestion + questions[i]);
+            System.out.println(PREFACE_QUESTION + questions[i]);
             for(int j = 0; j < answerOptions.length; j++) {
                 System.out.println(j+1 + ". " + answerOptions[i][j]);
             }
             int answer = scanner.nextInt();
+
             if (answer > answerOptions[i].length) {
-                System.out.println("Введено невозможное значение!");
-                System.exit (1);
+                System.out.println("Неверно! Правильный ответ: " + answerOptions[i][correctAnswers[i]-1]);
+                wrongCount++;
+                continue;
             }
                 System.out.println("Ваш ответ: " + answerOptions[i][answer-1]);
             if (answer == correctAnswers[i]){
